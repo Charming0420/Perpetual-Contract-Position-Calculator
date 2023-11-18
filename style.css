@@ -1,0 +1,162 @@
+/* Basic Style Settings */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.image-container {
+  width: 540px;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  /* background-color: #fff; */
+}
+
+.headerimage2 {
+  border-radius: 10px;
+}
+
+#header-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.big-container {
+  max-width: 550px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Input and Button Styles */
+input[type="number"],
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Styles for Radio Buttons */
+.radio-group {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.radio-button {
+  flex-basis: 48%;
+  border: none;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+#long {
+  background-color: #4caf50;
+}
+
+#short {
+  background-color: #f44336;
+}
+
+/* Confirm Button Style */
+button#confirm {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button#confirm:hover {
+  background-color: #0056b3;
+}
+
+.radio-button.unselected {
+  background-color: darkgray;
+  background-blend-mode: multiply;
+  opacity: 0.25;
+}
+
+/* Centering Container */
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.rightTitle {
+  text-align: right;
+  font-size: 14px;
+  color: #333;
+  padding-right: 10px;
+  margin-top: 20px;
+}
+
+/* Result Display Area */
+#result {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  padding-top: 18px;
+  border-top: 1px solid #ddd;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.resultSpan {
+  color: #f44336;
+  padding-top: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .image-container {
+    width: 100%;
+  }
+  .container {
+    padding: 10px;
+  }
+
+  input[type="number"],
+  button {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 890px) {
+  .radio-group {
+    flex-direction: column;
+  }
+
+  .radio-button {
+    flex-basis: auto;
+    margin-bottom: 10px;
+  }
+
+  #result {
+    font-size: 18px;
+  }
+}

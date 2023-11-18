@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>計算器</title>
+    <script src="calculate.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- <style>
+      /* 基本样式設定 */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f0f0f0;
+      }
+      .image-container {
+        width: 540px; /* 使 image-container 寬度與屏幕寬度相同 */
+        display: flex; /* 使用 flex 布局以便於中心對齊圖片 */
+        justify-content: center; /* 水平居中 */
+        margin: 0 auto;
+        background-color: #fff;
+        border-radius: 10px;
+      }
+
+      #header-image {
+        max-width: 100%; /* 使圖片寬度不超過其容器 */
+        height: auto; /* 保持圖片的原始比例 */
+        /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+      }
+
+      .big-container{
+        max-width: 550px;
+        margin: 0 auto;
+        border-radius: 10px;
+      }
+
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* 輸入框及按鈕样式 */
+      input[type="number"],
+      button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+      }
+
+      /* 特別為 radio 按鈕設計的样式 */
+      .radio-group {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .radio-button {
+        flex-basis: 48%;
+        border: none;
+        color: white;
+        padding: 10px;
+        cursor: pointer;
+        text-align: center;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      #long {
+        background-color: #4caf50;
+      }
+
+      #short {
+        background-color: #f44336;
+      }
+
+      /* 確認按鈕的样式 */
+      button#confirm {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button#confirm:hover {
+        background-color: #0056b3;
+      }
+
+      .radio-button.unselected {
+        background-color: darkgray; /* 設置灰色背景 */
+        background-blend-mode: multiply; /* 使用 multiply 模式混合背景色和灰色 */
+        opacity: 0.25; /* 可以調整透明度以達到最佳視覺效果 */
+      }
+
+      /* 容器居中 */
+      .container {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .rightTitle{
+        text-align: right;
+        font-size: 14px;
+        color: #333;
+        padding-right: 10px;
+        /* padding: 10px 0; */
+        /* border-top: 1px solid #ddd; */
+        margin-top: 20px;
+      }
+
+      /* 結果顯示區域 */
+      #result {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        /* padding: 10px 0; */
+        padding-top: 18px ;
+        border-top: 1px solid #ddd;
+        margin-top: 20px;
+        text-align: center;
+        /* font-family: "Courier New", Courier, monospace; */
+
+      }
+
+      /* 響應式設計 */
+      @media (max-width: 480px) {
+        body {
+          padding: 10px;
+        }
+
+        .image-container {
+          width: 100%; /* 在較小的螢幕上，讓容器寬度為 100% */
+          /* padding: 10px; 適當的內邊距 */
+        }
+        .container {
+          /* width: 100%; 在較小的螢幕上，讓容器寬度為 100% */
+          padding: 10px; 適當的內邊距
+        }
+
+        input[type="number"],
+        button {
+          padding: 15px;
+        }
+      }
+
+      @media (max-width: 890px) {
+        .radio-group {
+          flex-direction: column;
+        }
+
+        .radio-button {
+          flex-basis: auto;
+          margin-bottom: 10px;
+        }
+
+        #result {
+          font-size: 18px;
+        }
+      }
+    </style> -->
+
+    <script>
+      // 初始化一個變量來儲存當前的方向
+      var currentDirection = "long";
+
+      // 當頁面加載完畢後，設定按鈕的點擊事件
+      window.onload = function () {
+        // 預設為做多
+        selectDirection("long");
+        document
+          .getElementById("confirm")
+          .addEventListener("click", function () {
+            // 從輸入欄位獲取數值
+            const positionSize = document.getElementById("position-size").value;
+            const openingPrice = document.getElementById("opening-price").value;
+            const stopLossPrice =
+              document.getElementById("stop-loss-price").value;
+            const maxLoss = document.getElementById("max-loss").value;
+
+            // 調用 calculateResult 函數進行計算
+            const result = calculateResult(
+              currentDirection,
+              positionSize,
+              openingPrice,
+              stopLossPrice,
+              maxLoss
+            );
+
+            // 將結果顯示在 result 元素中
+            document.getElementById("result").innerText =
+              "結果：" + result.toFixed(2);
+          });
+      };
+
+      // 更新方向選擇的函數
+      function selectDirection(direction) {
+        var longButton = document.getElementById("long");
+        var shortButton = document.getElementById("short");
+
+        //移除所有按鈕上的 'selected' 和 'unselected' 類別
+        longButton.classList.remove("selected", "unselected");
+        shortButton.classList.remove("selected", "unselected");
+
+        // 根據選擇的方向添加類別
+        if (direction == "long") {
+          longButton.classList.add("selected");
+          shortButton.classList.add("unselected");
+        } else {
+          shortButton.classList.add("selected");
+          longButton.classList.add("unselected");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="image-container">
+      <a href="https://twitter.com/CryptoCharming1">
+        <img
+          src="./header_Pic/header_pic.png"
+          alt="Header Image"
+          id="header-image"
+          class="headerimage2"
+        />
+      </a>
+    </div>
+    <div><p></p></div>
+    <div class="big-container">
+      <div class="container">
+        <div class="radio-group">
+          <button
+            type="button"
+            id="long"
+            class="radio-button"
+            onclick="selectDirection('long')"
+          >
+            做多
+          </button>
+          <button
+            type="button"
+            id="short"
+            class="radio-button"
+            onclick="selectDirection('short')"
+          >
+            做空
+          </button>
+        </div>
+        <div>
+          <label for="position-size">倉位大小：</label>
+          <input type="number" id="position-size" value="100" />
+        </div>
+        <div>
+          <label for="opening-price">開倉價格：</label>
+          <input type="number" id="opening-price" />
+        </div>
+        <div>
+          <label for="stop-loss-price">止損價格：</label>
+          <input type="number" id="stop-loss-price" />
+        </div>
+        <div>
+          <label for="max-loss">最大可接受虧損金額：</label>
+          <input type="number" id="max-loss" value="30" />
+        </div>
+        <div>
+          <button id="confirm">確認</button>
+        </div>
+        <div id="result">
+          槓桿倍數
+          <div id="resultSpan" class="resultSpan"></div>
+        </div>
+      </div>
+      <div><p></p></div>
+      <div class="rightTitle">Made by @CryptoCharming1</div>
+    </div>
+  </body>
+</html>
