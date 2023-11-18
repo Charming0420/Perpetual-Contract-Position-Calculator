@@ -11,7 +11,6 @@ body {
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  /* background-color: #fff; */
 }
 
 .headerimage2 {
@@ -21,6 +20,7 @@ body {
 #header-image {
   max-width: 100%;
   height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .big-container {
@@ -109,6 +109,8 @@ button#confirm:hover {
   color: #333;
   padding-right: 10px;
   margin-top: 20px;
+  font-family: "Bungee Hairline", sans-serif;
+  font-weight: bolder;
 }
 
 /* Result Display Area */
