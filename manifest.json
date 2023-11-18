@@ -1,0 +1,36 @@
+{
+  "short_name": "Calculator",
+  "name": "CryptoCharming Calculator",
+  "icons": [
+    {
+      "src": "Icon/Charming.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "Icon/Charming2.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "Icon/Charming2.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "Icon/Charming2.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "Icon/Charming2.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#ffffff"
+}

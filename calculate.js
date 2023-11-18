@@ -1,5 +1,23 @@
 // 確保 DOM 完全加載後再執行腳本
 document.addEventListener("DOMContentLoaded", (event) => {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("/service-worker.js").then(
+        function (registration) {
+          // 註冊成功
+          console.log(
+            "ServiceWorker registration successful with scope: ",
+            registration.scope
+          );
+        },
+        function (err) {
+          // 註冊失敗 :(
+          console.log("ServiceWorker registration failed: ", err);
+        }
+      );
+    });
+  }
+
   var currentDirection = "long"; // 初始化變量
 
   function selectDirection(direction) {
